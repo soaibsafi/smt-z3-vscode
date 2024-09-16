@@ -1,0 +1,86 @@
+{
+  "name": "smt-z3",
+  "displayName": "SMT Z3",
+  "description": "VSCode extension for SMT2 language with Z3 solver",
+  "version": "0.1.0",
+  "publisher": "Soaibuzzaman",
+  "engines": {
+    "vscode": "^1.8.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "smt",
+        "aliases": [
+          "SMT",
+          "smt"
+        ],
+        "extensions": [
+          ".smt",
+          ".smt2"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "smt",
+        "scopeName": "source.smt",
+        "path": "./syntaxes/smt.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "smt2.run",
+        "title": "SMT2: Execute Z3"
+      }
+    ]
+  },
+  "keywords": [
+    "smt",
+    "smt-lib",
+    "z3",
+    "smt2",
+    "smt2-lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soaibsafi/smt-z3-vscode/.git"
+  },
+  "author": {
+    "email": "soaibuzzaman@uni-weimar.de",
+    "name": "Soaibuzzaman"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/soaibsafi/smt-z3-vscode/issues"
+  },
+  "homepage": "https://github.com/soaibsafi/smt-z3-vscode/#readme",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.8.0",
+    "@typescript-eslint/eslint-plugin": "^8.3.0",
+    "@typescript-eslint/parser": "^8.3.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.9.1",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "z3-solver": "^4.13.0"
+  }
+}

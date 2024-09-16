@@ -1,0 +1,23 @@
+.github/
+.vscode/
+out/**
+node_modules/**
+src/**
+.gitignore
+.yarnrc
+esbuild.js
+vsc-extension-quickstart.md
+**/tsconfig.json
+**/eslint.config.mjs
+**/*.map
+**/*.ts
+**/.vscode-test.*
+
+# Do not ignore the compiled JavaScript files
+!out/**/*.js
+
+# Do not ignore the package.json file
+!package.json
+
+# Do not ignore node_modules
+!node_modules/**
