@@ -5,9 +5,12 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let panel: vscode.WebviewPanel | undefined;
 
-	const runSMT2Command = vscode.commands.registerCommand('smt2.run', async (code: string) => {
+	const runSMT2Command = vscode.commands.registerCommand('smt2.run', async (code?: string) => {
 		const editor = vscode.window.activeTextEditor;
 		if (editor) {
+			if (!code) {
+				code = editor.document.getText();
+			}
 			try {
 				const result = await runSMT2Code(code);
 
