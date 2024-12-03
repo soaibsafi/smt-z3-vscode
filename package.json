@@ -2,7 +2,8 @@
   "name": "smt-z3",
   "displayName": "SMT Z3",
   "description": "VSCode extension for SMT2 language with Z3 solver",
-  "version": "0.1.0",
+  "icon": "images/logo.png",
+  "version": "0.1.1",
   "publisher": "Soaibuzzaman",
   "engines": {
     "vscode": "^1.8.0"
