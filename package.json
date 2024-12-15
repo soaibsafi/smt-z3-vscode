@@ -3,7 +3,7 @@
   "displayName": "SMT Z3",
   "description": "VSCode extension for SMT2 language with Z3 solver",
   "icon": "images/logo.png",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "publisher": "Soaibuzzaman",
   "engines": {
     "vscode": "^1.8.0"
@@ -33,6 +33,18 @@
         "language": "smt",
         "scopeName": "source.smt",
         "path": "./syntaxes/smt.tmLanguage.json"
+      }
+    ],
+    "configuration": [
+      {
+        "title": "Timeout for Z3",
+        "properties": {
+          "smt-z3.timeout": {
+            "type": "number",
+            "default": 60000,
+            "description": "Timeout in milliseconds for Z3 solver."
+          }
+        }
       }
     ],
     "commands": [
