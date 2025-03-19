@@ -22,7 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
 				const result = await runSMT2Code(code, timeout);
 				const endTime = Date.now();
 				const solveTime = endTime - startTime;
-				const timestamp = new Date().toLocaleString();
+				const timestamp = new Date().toISOString().replace('T', ' ').split('.')[0];
 
 				if (!panel) {
 					panel = vscode.window.createWebviewPanel(
