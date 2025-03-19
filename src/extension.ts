@@ -12,10 +12,17 @@ export function activate(context: vscode.ExtensionContext) {
 				code = editor.document.getText();
 			}
 
-			const timeout = vscode.workspace.getConfiguration('smt-z3').get<number>('timeout') ?? 60000;
+			const config = vscode.workspace.getConfiguration('smt-z3');
+			const timeout = config.get<number>('timeout') ?? 60000;
+			const showSolveTime = config.get<boolean>('showSolveTime') ?? true;
+
+			const startTime = Date.now();
 
 			try {
 				const result = await runSMT2Code(code, timeout);
+				const endTime = Date.now();
+				const solveTime = endTime - startTime;
+				const timestamp = new Date().toLocaleString();
 
 				if (!panel) {
 					panel = vscode.window.createWebviewPanel(
@@ -30,7 +37,12 @@ export function activate(context: vscode.ExtensionContext) {
 					});
 				}
 
-				panel.webview.html = `<html><body><pre>${result}</pre></body></html>`;
+				panel.webview.html = `<html><body>
+                ${showSolveTime ? `<pre>;; Solver result (re)generated at ${timestamp} </pre>` : ''}
+								${showSolveTime ? `<pre>;; Execution time: ${solveTime}ms</pre>` : ''}
+                <pre>${result}</pre>
+            </body></html>`;
+
 				return result;
 
 			} catch (error) {
@@ -65,7 +77,11 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	context.subscriptions.push(runSMT2Command, stopSMT2Command);
+	const openSettingsCommand = vscode.commands.registerCommand('smt2.openSettings', async () => {
+		await vscode.commands.executeCommand('workbench.action.openSettings', '@ext:Soaibuzzaman.smt-z3');
+	});
+
+	context.subscriptions.push(runSMT2Command, stopSMT2Command, openSettingsCommand);
 
 	const codeLensProvider = new SMT2CodeLensProvider();
 	context.subscriptions.push(
@@ -77,7 +93,7 @@ async function runSMT2Code(code: string, timeout: number): Promise<string> {
 	return new Promise((resolve, reject) => {
 
 		const smtRunnerScript = require.resolve('./smt-runner');
-		
+
 		currentProcess = spawn(process.execPath, [smtRunnerScript], {
 			stdio: ['pipe', 'pipe', 'pipe'],
 		});
@@ -138,19 +154,21 @@ class SMT2CodeLensProvider implements vscode.CodeLensProvider {
 		});
 		codeLens.push(runCodeLens, stopCodeLens);
 
-		const runCodeLensCurrentLine = new vscode.CodeLens(currentLineRange, {
-			title: '▶ Execute',
-			command: 'smt2.run',
-			arguments: [code]
-		});
+		// Read configuration for showing current line code lens
+		const showCurrentLineCodeLens = vscode.workspace.getConfiguration('smt-z3').get<boolean>('showCurrentLineCodeLens') ?? true;
 
-		const stopCodeLensCurrentLine = new vscode.CodeLens(currentLineRange, {
-			title: '⏹ Stop',
-			command: 'smt2.stop'
-		});
+		if (showCurrentLineCodeLens && vscode.window.activeTextEditor?.selection.active.line !== 0) {
+			const runCodeLensCurrentLine = new vscode.CodeLens(currentLineRange, {
+				title: '▶ Execute',
+				command: 'smt2.run',
+				arguments: [code]
+			});
 
-		// If current position is at the top of the document, don't show the CodeLens
-		if (vscode.window.activeTextEditor?.selection.active.line !== 0) {
+			const stopCodeLensCurrentLine = new vscode.CodeLens(currentLineRange, {
+				title: '⏹ Stop',
+				command: 'smt2.stop'
+			});
+
 			codeLens.push(runCodeLensCurrentLine, stopCodeLensCurrentLine);
 		}
 
