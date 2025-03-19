@@ -1,5 +1,6 @@
 name: Publish SMT Z3 VS Code Extension
 on:
+  workflow_dispatch:
   push:
     tags:
       - "*"
