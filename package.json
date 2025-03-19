@@ -37,12 +37,23 @@
     ],
     "configuration": [
       {
-        "title": "Timeout for Z3",
+        "type": "object",
+        "title": "SMT-Z3 Configuration",
         "properties": {
           "smt-z3.timeout": {
             "type": "number",
             "default": 60000,
-            "description": "Timeout in milliseconds for Z3 solver."
+            "description": "Timeout in milliseconds for SMT-Z3 execution."
+          },
+          "smt-z3.showCurrentLineCodeLens": {
+            "type": "boolean",
+            "default": true,
+            "description": "Show Execute/Stop CodeLens button on the current line."
+          },
+          "smt-z3.showSolveTime": {
+            "type": "boolean",
+            "default": true,
+            "description": "Show the timestamp of the last solve operation and the time taken."
           }
         }
       }
@@ -50,7 +61,13 @@
     "commands": [
       {
         "command": "smt2.run",
-        "title": "SMT2: Execute Z3"
+        "title": "Execute Z3",
+        "category": "SMT-Z3"
+      },
+      {
+        "command": "smt2.openSettings",
+        "title": "Open Settings",
+        "category": "SMT-Z3"
       }
     ]
   },
