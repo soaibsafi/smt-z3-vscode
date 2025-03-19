@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.2.1] - 2025-03-19
+- Added option to turn on/off inline code lens in the editor and solver time in the output 
+
 ## [0.2.0] - 2024-12-15
 - Added option to set the timeout for the solver
 - Added stop button to stop the solver
