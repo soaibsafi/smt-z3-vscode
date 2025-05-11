@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.2.2] - 2025-05-11
+- Updated z3-solver to 4.15.0
+
 ## [0.2.1] - 2025-03-19
 - Added option to turn on/off inline code lens in the editor and solver time in the output 
 
