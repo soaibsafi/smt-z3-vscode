@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.2.3] - 2025-08-18
+- Updated z3-solver to 4.15.3
+
 ## [0.2.2] - 2025-05-11
 - Updated z3-solver to 4.15.0
 
