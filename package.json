@@ -3,7 +3,7 @@
   "displayName": "SMT Z3",
   "description": "VSCode extension for SMT2 language with Z3 solver",
   "icon": "images/logo.png",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "publisher": "Soaibuzzaman",
   "engines": {
     "vscode": "^1.8.0"
@@ -111,6 +111,6 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "z3-solver": "^4.15.3"
+    "z3-solver": "^4.15.4"
   }
 }
