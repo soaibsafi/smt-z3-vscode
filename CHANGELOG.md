@@ -1,5 +1,10 @@
 # Change Log
 
+## [4.16.0] - 2026-02-25
+
+- Updated z3-solver to 4.16.0
+- Updated versioning to match z3-solver versioning
+
 ## [0.2.4] - 2025-11-01
 
 - Updated z3-solver to 4.15.4

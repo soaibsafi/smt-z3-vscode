@@ -2,7 +2,7 @@
 
 ## Features
 
-- Syntax highlighting for SMT-LIB2 files (`.smt2`, `.smt`) from [SMT.tmbundle](https://github.com/SRI-CSL/SMT.tmbundle)
+- Syntax highlighting for SMT-LIB2 files (`.smt2`) from [SMT.tmbundle](https://github.com/SRI-CSL/SMT.tmbundle)
 - Execute SMT-LIB2 files with Z3 without explicitly installing Z3
 
 > [!TIP]
@@ -12,7 +12,7 @@
 
 ## Usage
 
-For executing SMT-LIB2 files, open a `.smt2` or `.smt` file and click on the `▶ Execute` button in the top right corner of the editor. The result will be displayed in the output window. You can also open the command palette (Ctrl+Shift+P) and type `SMT-Z3: Execute Z3`.
+For executing SMT-LIB2 files, open a `.smt2` file and click on the `▶ Execute` button in the top right corner of the editor. The result will be displayed in the output window. You can also open the command palette (Ctrl+Shift+P) and type `SMT-Z3: Execute Z3`.
 
 For stopping the execution, click on the `⏹ Stop` button in the top right corner of the editor. 
 
@@ -31,3 +31,5 @@ Open the settings (Ctrl+Shift+P or ⌘ + ⇧ + P) and search for `SMT-Z3: Open S
 ## License
 
 This extension is licensed under the MIT License.  See [LICENSE](LICENSE) for more information.
+
+For Z3 itself, see the [Z3 License](https://github.com/Z3Prover/z3/blob/master/LICENSE.txt)
