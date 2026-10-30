@@ -3,7 +3,7 @@
   "displayName": "SMT Z3",
   "description": "VS Code extension for SMT-LIB scripts with Z3 solver integration via WebAssembly.",
   "icon": "images/logo.png",
-  "version": "5.3.3",
+  "version": "5.3.32",
   "publisher": "Soaibuzzaman",
   "engines": {
     "vscode": "^1.8.0"
