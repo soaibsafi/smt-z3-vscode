@@ -112,6 +112,6 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "z3-solver": "^5.3.3"
+    "z3-solver": "^5.4.0"
   }
 }

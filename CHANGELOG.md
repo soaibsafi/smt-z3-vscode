@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.4.0] - 2026-11-11
+
+- Updated z3-solver to [5.4.0](https://github.com/Z3Prover/z3/blob/master/RELEASE_NOTES.md#version-540)
+
 ## [5.3.3] - 2026-10-30
 
 - Updated z3-solver to [5.3.3](https://github.com/Z3Prover/z3/blob/master/RELEASE_NOTES.md#version-533)
