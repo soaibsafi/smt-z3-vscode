@@ -1,23 +1,18 @@
-.github/
-.vscode/
-out/**
+.github/**
+.vscode/**
+.vscode-test/**
 node_modules/**
+ref/**
+smt-langium/**
 src/**
+out/test/**
 .gitignore
 .yarnrc
-esbuild.js
+esbuild.mjs
 vsc-extension-quickstart.md
-**/tsconfig.json
+**/tsconfig*.json
 **/eslint.config.mjs
 **/*.map
 **/*.ts
 **/.vscode-test.*
-
-# Do not ignore the compiled JavaScript files
-!out/**/*.js
-
-# Do not ignore the package.json file
-!package.json
-
-# Do not ignore node_modules
-!node_modules/**
+test.smt2

@@ -1,26 +1,29 @@
 {
   "name": "smt-z3",
   "displayName": "SMT Z3",
-  "description": "VS Code extension for SMT-LIB scripts with Z3 solver integration via WebAssembly.",
+  "description": "VS Code extension for SMT-LIB 2.7 scripts with Z3 solver integration via WebAssembly and Language Server support (diagnostics, sort checking, completion, hover, navigation, and formatting).",
   "icon": "images/logo.png",
   "version": "5.4.1",
   "publisher": "Soaibuzzaman",
   "engines": {
-    "vscode": "^1.8.0"
+    "vscode": "^1.75.0"
   },
   "categories": [
     "Programming Languages"
   ],
-  "activationEvents": [],
-  "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:smt"
+  ],
+  "main": "./out/extension/main.cjs",
   "contributes": {
     "languages": [
       {
         "id": "smt",
         "aliases": [
+          "SMT-LIB",
           "SMT",
           "smt",
-          "SMT-LIB",
+          "smt2",
           "smt-lib"
         ],
         "extensions": [
@@ -41,6 +44,11 @@
         "type": "object",
         "title": "SMT-Z3 Configuration",
         "properties": {
+          "smt-z3.enableLsp": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable the experimental SMT-LIB / Z3 Language Server (diagnostics, sort checking, completion, hover, navigation, and formatting)."
+          },
           "smt-z3.timeout": {
             "type": "number",
             "default": 60000,
@@ -66,8 +74,18 @@
         "category": "SMT-Z3"
       },
       {
+        "command": "smt2.stop",
+        "title": "Stop Z3",
+        "category": "SMT-Z3"
+      },
+      {
         "command": "smt2.openSettings",
         "title": "Open Settings",
+        "category": "SMT-Z3"
+      },
+      {
+        "command": "smt2.restartServer",
+        "title": "Restart Language Server",
         "category": "SMT-Z3"
       }
     ]
@@ -93,25 +111,35 @@
   },
   "homepage": "https://github.com/soaibsafi/smt-z3-vscode/#readme",
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
+    "vscode:prepublish": "npm run compile:prod",
+    "compile": "tsc --noEmit && node esbuild.mjs",
+    "compile:prod": "tsc --noEmit && node esbuild.mjs --minify",
+    "watch": "node esbuild.mjs --watch",
+    "compile-tests": "tsc -p tsconfig.test.json",
+    "pretest": "npm run compile && npm run compile-tests && npm run lint",
     "lint": "eslint src",
-    "test": "node ./out/test/runTest.js"
+    "test": "vscode-test"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.7",
     "@types/node": "20.x",
-    "@types/vscode": "^1.8.0",
+    "@types/vscode": "^1.75.0",
     "@typescript-eslint/eslint-plugin": "^8.3.0",
     "@typescript-eslint/parser": "^8.3.0",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.4.1",
+    "esbuild": "~0.25.5",
     "eslint": "^9.9.1",
     "typescript": "^5.5.4"
   },
   "dependencies": {
+    "@se-buw/smt-language": "^0.1.0",
+    "langium": "~4.1.0",
+    "vscode-languageclient": "~9.0.1",
+    "vscode-languageserver": "~9.0.1",
     "z3-solver": "^5.4.1"
+  },
+  "vsce": {
+    "dependencies": false
   }
 }
