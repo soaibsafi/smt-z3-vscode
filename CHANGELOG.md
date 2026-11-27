@@ -1,8 +1,14 @@
 # Change Log
 
+## [5.4.101] - 2026-11-27
+
+- Added experimental SMT-LIB 2.7 / Z3 Language Server (LSP) support powered by [`@se-buw/smt-language`](https://www.npmjs.com/package/@se-buw/smt-language)
+- Exposed `SMT-Z3: Stop Z3` in the Command Palette
+- Bundled extension and language server with `esbuild` and hardened Z3 output webview HTML escaping and CSP
+
 ## [5.4.1] - 2026-11-11
 
-- Updated z3-solver to [5.4.1](https://github.com/Z3Prover/z3/blob/master/RELEASE_NOTES.md#version-540)
+- Updated z3-solver to [5.4.1](https://github.com/Z3Prover/z3/blob/master/RELEASE_NOTES.md#version-540)F
 
 ## [5.4.0] - 2026-11-11
 
